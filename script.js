@@ -1,10 +1,6 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var charTypes = {lower: false, upper: false, numeric: false, special: false}; 
-var lowerChar = "abcdefghijklmnopqrstuvwxyz";
-var upperChar = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-var numbChars = "1234567890";
-var specialChars = " !#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
+var passChars = "";
 
 // Write password to the #password input
 function writePassword() {
@@ -23,12 +19,12 @@ function generatePassword() {
   var passLength = getLength();
   console.log(passLength);
 
-  var charsSelected = getCharTypes();
-  console.log(charsSelected);
+  getCharTypes();
+  console.log(passChars);
   
   var pass ="";
   for (i = 0; i < passLength; i++) {
-    pass += charsSelected.charAt(Math.floor(Math.random() * charsSelected.length));
+    pass += passChars.charAt(Math.floor(Math.random() * passChars.length));
   }
 
   return pass;
@@ -47,7 +43,8 @@ function getLength() {
 }
 
 function getCharTypes() {
-  var passChars = "";
+  var charTypes = {lower: false, upper: false, numeric: false, special: false}; 
+  passChars = "";
 
   charTypes.lower = confirm("Would you like to include lowercase characters?");
   console.log(charTypes.lower);
@@ -64,18 +61,17 @@ function getCharTypes() {
     getCharTypes();
   } else {
     if (charTypes.lower) {
-      passChars += lowerChar;
+      passChars += "abcdefghijklmnopqrstuvwxyz";
     }
     if (charTypes.upper) {
-      passChars += upperChar;
+      passChars += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
     }
     if (charTypes.numeric) {
-      passChars += numbChars; 
+      passChars += "1234567890"; 
     }
     if (charTypes.special) {
-      passChars += specialChars;
+      passChars += " !#$%&'()*+,-./:;<=>?@[\]^_`{|}~";
     }
-    return passChars;
   }
 }
 
